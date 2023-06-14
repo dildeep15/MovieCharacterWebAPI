@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MovieCharacterAPI.Data;
 using System.Diagnostics.CodeAnalysis;
 
 namespace MovieCharacterAPI.Models
@@ -14,7 +15,14 @@ namespace MovieCharacterAPI.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            // Seeding Character
+            modelBuilder.Entity<Character>().HasData(DataSeedHelper.SeedCharacters());
+
+            // Seeding Franchise
+            modelBuilder.Entity<Franchise>().HasData(DataSeedHelper.SeedFranchises());
+
+            // Seeding Movie
+            modelBuilder.Entity<Movie>().HasData( DataSeedHelper.SeedMovies());
         }
     }
 }
