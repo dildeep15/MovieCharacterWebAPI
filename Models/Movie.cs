@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace MovieCharacterAPI.Models
 {
@@ -7,12 +9,19 @@ namespace MovieCharacterAPI.Models
         [Key]
         public int MovieId { get; set; }
         [MaxLength(255)]
+        [Required]
         public string Title { get; set; }
-        public string? Genre { get; set; }
+        [Required]
         public int ReleaseYear { get; set; }
-        [MaxLength(255)]
-        public string Director { get; set; }
-        public string Picture { get; set; }
-        public string Trailer { get; set; }
+        public string? Genre { get; set; }
+        public string? Director { get; set; }
+        public string? PictureURL { get; set; }
+        public string? TrailerURL { get; set; }
+        public int? FranchiseId { get; set; }
+
+        // Navigation property
+        public Franchise? Franchise { get; set; }
+        public ICollection<Character> Characters { get; set; }
+
     }
 }
