@@ -52,7 +52,9 @@ namespace MovieCharacterAPI.Data
                 new Movie(){ MovieId = 1, Title = "Iron Man", ReleaseYear=2008, Director="Jon Favreau" , Genre="Comic Book,Superhero", FranchiseId = 1},
                 new Movie(){ MovieId = 2, Title = "Thor", ReleaseYear=2011, Director="Kenneth Branagh" , Genre="Comic Book,Superhero", FranchiseId = 3},
                 new Movie(){ MovieId = 3, Title = "The Avengers", ReleaseYear=2012, Director="Joss Whedon" , Genre="Comic Book, Superhero", FranchiseId = 5},
-                new Movie(){ MovieId = 4, Title = "SpiderMan Homecoming", ReleaseYear=2017, Director="Jon Watts" , Genre="Comic Book, Superhero", FranchiseId = 2}
+                new Movie(){ MovieId = 4, Title = "SpiderMan Homecoming", ReleaseYear=2017, Director="Jon Watts" , Genre="Comic Book, Superhero", FranchiseId = 2},
+                new Movie(){ MovieId = 5, Title = "Avengers: Infinity War", ReleaseYear=2018, Director="Anthony and Joe Russo" , Genre="Comic Book, Superhero", FranchiseId = 5}
+
             };
             return movies;
         }

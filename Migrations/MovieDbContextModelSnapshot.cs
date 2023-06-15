@@ -32,6 +32,63 @@ namespace MovieCharacterAPI.Migrations
                     b.HasIndex("MoviesMovieId");
 
                     b.ToTable("CharacterMovie");
+
+                    b.HasData(
+                        new
+                        {
+                            CharactersCharacterId = 1,
+                            MoviesMovieId = 1
+                        },
+                        new
+                        {
+                            CharactersCharacterId = 2,
+                            MoviesMovieId = 2
+                        },
+                        new
+                        {
+                            CharactersCharacterId = 1,
+                            MoviesMovieId = 3
+                        },
+                        new
+                        {
+                            CharactersCharacterId = 2,
+                            MoviesMovieId = 3
+                        },
+                        new
+                        {
+                            CharactersCharacterId = 3,
+                            MoviesMovieId = 3
+                        },
+                        new
+                        {
+                            CharactersCharacterId = 1,
+                            MoviesMovieId = 4
+                        },
+                        new
+                        {
+                            CharactersCharacterId = 4,
+                            MoviesMovieId = 4
+                        },
+                        new
+                        {
+                            CharactersCharacterId = 1,
+                            MoviesMovieId = 5
+                        },
+                        new
+                        {
+                            CharactersCharacterId = 2,
+                            MoviesMovieId = 5
+                        },
+                        new
+                        {
+                            CharactersCharacterId = 3,
+                            MoviesMovieId = 5
+                        },
+                        new
+                        {
+                            CharactersCharacterId = 4,
+                            MoviesMovieId = 5
+                        });
                 });
 
             modelBuilder.Entity("MovieCharacterAPI.Models.Character", b =>
@@ -62,6 +119,36 @@ namespace MovieCharacterAPI.Migrations
                     b.HasKey("CharacterId");
 
                     b.ToTable("Character");
+
+                    b.HasData(
+                        new
+                        {
+                            CharacterId = 1,
+                            Alias = "Iron Man",
+                            FullName = "Robert Downey Jr.",
+                            Gender = "Male"
+                        },
+                        new
+                        {
+                            CharacterId = 2,
+                            Alias = "Thor",
+                            FullName = "Chris Hemsworth",
+                            Gender = "Male"
+                        },
+                        new
+                        {
+                            CharacterId = 3,
+                            Alias = "Captain America",
+                            FullName = "Chris Evans",
+                            Gender = "Male"
+                        },
+                        new
+                        {
+                            CharacterId = 4,
+                            Alias = "Spider Man",
+                            FullName = "Tom Holland",
+                            Gender = "Male"
+                        });
                 });
 
             modelBuilder.Entity("MovieCharacterAPI.Models.Franchise", b =>
@@ -82,6 +169,33 @@ namespace MovieCharacterAPI.Migrations
                     b.HasKey("FranchiseId");
 
                     b.ToTable("Franchise");
+
+                    b.HasData(
+                        new
+                        {
+                            FranchiseId = 1,
+                            Name = "Iron Man Series"
+                        },
+                        new
+                        {
+                            FranchiseId = 2,
+                            Name = "Spider Man Series"
+                        },
+                        new
+                        {
+                            FranchiseId = 3,
+                            Name = "Thor Series"
+                        },
+                        new
+                        {
+                            FranchiseId = 4,
+                            Name = "Captain America Series"
+                        },
+                        new
+                        {
+                            FranchiseId = 5,
+                            Name = "Marvel Universe"
+                        });
                 });
 
             modelBuilder.Entity("MovieCharacterAPI.Models.Movie", b =>
@@ -119,6 +233,53 @@ namespace MovieCharacterAPI.Migrations
                     b.HasIndex("FranchiseId");
 
                     b.ToTable("Movie");
+
+                    b.HasData(
+                        new
+                        {
+                            MovieId = 1,
+                            Director = "Jon Favreau",
+                            FranchiseId = 1,
+                            Genre = "Comic Book,Superhero",
+                            ReleaseYear = 2008,
+                            Title = "Iron Man"
+                        },
+                        new
+                        {
+                            MovieId = 2,
+                            Director = "Kenneth Branagh",
+                            FranchiseId = 3,
+                            Genre = "Comic Book,Superhero",
+                            ReleaseYear = 2011,
+                            Title = "Thor"
+                        },
+                        new
+                        {
+                            MovieId = 3,
+                            Director = "Joss Whedon",
+                            FranchiseId = 5,
+                            Genre = "Comic Book, Superhero",
+                            ReleaseYear = 2012,
+                            Title = "The Avengers"
+                        },
+                        new
+                        {
+                            MovieId = 4,
+                            Director = "Jon Watts",
+                            FranchiseId = 2,
+                            Genre = "Comic Book, Superhero",
+                            ReleaseYear = 2017,
+                            Title = "SpiderMan Homecoming"
+                        },
+                        new
+                        {
+                            MovieId = 5,
+                            Director = "Anthony and Joe Russo",
+                            FranchiseId = 5,
+                            Genre = "Comic Book, Superhero",
+                            ReleaseYear = 2018,
+                            Title = "Avengers: Infinity War"
+                        });
                 });
 
             modelBuilder.Entity("CharacterMovie", b =>
