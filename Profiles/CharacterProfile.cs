@@ -8,7 +8,7 @@ namespace MovieCharacterAPI.Profiles
     {
         public CharacterProfile()
         {
-            // Mapping from Character Model to CharacterReadDTO
+            // Mapping between character & Character DTO
             CreateMap<Character, CharacterReadDTO>();
             CreateMap<CharacterCreateDTO, Character>();
             CreateMap<CharacterUpdateDTO, Character>();
