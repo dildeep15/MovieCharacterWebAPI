@@ -6,12 +6,15 @@ using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using MovieCharacterAPI.DTO.MovieDTO;
 using MovieCharacterAPI.Models;
 
 namespace MovieCharacterAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Produces("Application/json")]
+    [Consumes("Application/json")]
     public class MoviesController : ControllerBase
     {
         private readonly MovieDbContext _context;
@@ -23,16 +26,30 @@ namespace MovieCharacterAPI.Controllers
             _mapper = mapper;
         }
 
-        // GET: api/Movies
+        /// <summary>
+        /// Get all movies from database
+        /// </summary>
+        /// <returns>List of MovieReadDTO</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Movie>>> GetMovie()
+        public async Task<ActionResult<IEnumerable<MovieReadDTO>>> GetMovie()
         {
-            return await _context.Movie.ToListAsync();
+            var movieList = await _context.Movie.ToListAsync();
+            return _mapper.Map<List<MovieReadDTO>>(movieList);
         }
 
-        // GET: api/Movies/5
+        /// <summary>
+        /// Get a movie from database specified by Id
+        /// </summary>
+        /// <param name="id">Movie Id</param>
+        /// <returns>MovieReadDTO</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet("{id}")]
-        public async Task<ActionResult<Movie>> GetMovie(int id)
+        public async Task<ActionResult<MovieReadDTO>> GetMovie(int id)
         {
             var movie = await _context.Movie.FindAsync(id);
 
@@ -41,19 +58,26 @@ namespace MovieCharacterAPI.Controllers
                 return NotFound();
             }
 
-            return movie;
+            return _mapper.Map<MovieReadDTO>(movie);
         }
 
-        // PUT: api/Movies/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        /// <summary>
+        /// Update a movie in database specified by id
+        /// </summary>
+        /// <param name="id">Movie Id</param>
+        /// <param name="movieDTO">MovieUpdateDTO</param>
+        /// <returns></returns>
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMovie(int id, Movie movie)
+        public async Task<IActionResult> PutMovie(int id, MovieUpdateDTO movieDTO)
         {
-            if (id != movie.MovieId)
+            if (id != movieDTO.MovieId)
             {
                 return BadRequest();
             }
-
+            var movie = _mapper.Map<Movie>(movieDTO);
             _context.Entry(movie).State = EntityState.Modified;
 
             try
@@ -75,18 +99,29 @@ namespace MovieCharacterAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Movies
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        /// <summary>
+        /// Insert a new movie in database
+        /// </summary>
+        /// <param name="movieDTO">MovieCreateDTO</param>
+        /// <returns></returns>
+        [ProducesResponseType(StatusCodes.Status201Created)]
         [HttpPost]
-        public async Task<ActionResult<Movie>> PostMovie(Movie movie)
+        public async Task<ActionResult<MovieCreateDTO>> PostMovie(MovieCreateDTO movieDTO)
         {
+            var movie = _mapper.Map<Movie>(movieDTO);
             _context.Movie.Add(movie);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetMovie", new { id = movie.MovieId }, movie);
+            return CreatedAtAction("GetMovie", new { id = movie.MovieId }, movieDTO);
         }
 
-        // DELETE: api/Movies/5
+        /// <summary>
+        /// Delete a movie from database specified by Id
+        /// </summary>
+        /// <param name="id">MovieId</param>
+        /// <returns></returns>
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteMovie(int id)
         {
@@ -102,6 +137,11 @@ namespace MovieCharacterAPI.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Check if movie exists specified by movie id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         private bool MovieExists(int id)
         {
             return _context.Movie.Any(e => e.MovieId == id);

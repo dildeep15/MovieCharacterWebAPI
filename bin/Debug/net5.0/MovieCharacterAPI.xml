@@ -15,7 +15,7 @@
             Get a character from database specified by id
             </summary>
             <param name="id">Character Id</param>
-            <returns>Character DTO</returns> 
+            <returns>CharacterReadDTO</returns> 
         </member>
         <member name="M:MovieCharacterAPI.Controllers.CharactersController.PutCharacter(System.Int32,MovieCharacterAPI.DTO.CharacterDTO.CharacterUpdateDTO)">
             <summary>
@@ -27,7 +27,7 @@
         </member>
         <member name="M:MovieCharacterAPI.Controllers.CharactersController.PostCharacter(MovieCharacterAPI.DTO.CharacterDTO.CharacterCreateDTO)">
             <summary>
-            Create a new character in database
+            Insert a new character in database
             </summary>
             <param name="characterDTO"> CharacterCreateDTO </param>
             <returns></returns>
@@ -42,10 +42,52 @@
         </member>
         <member name="M:MovieCharacterAPI.Controllers.CharactersController.CharacterExists(System.Int32)">
             <summary>
-            Check by Id if a specific character exists
+            Check If a character exists by character Id
             </summary>
             <param name="id"> Id of character</param>
             <returns> boolean</returns>
+        </member>
+        <member name="M:MovieCharacterAPI.Controllers.MoviesController.GetMovie">
+            <summary>
+            Get all movies from database
+            </summary>
+            <returns>List of MovieReadDTO</returns>
+        </member>
+        <member name="M:MovieCharacterAPI.Controllers.MoviesController.GetMovie(System.Int32)">
+            <summary>
+            Get a movie from database specified by Id
+            </summary>
+            <param name="id">Movie Id</param>
+            <returns>MovieReadDTO</returns>
+        </member>
+        <member name="M:MovieCharacterAPI.Controllers.MoviesController.PutMovie(System.Int32,MovieCharacterAPI.DTO.MovieDTO.MovieUpdateDTO)">
+            <summary>
+            Update a movie in database specified by id
+            </summary>
+            <param name="id">Movie Id</param>
+            <param name="movieDTO">MovieUpdateDTO</param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieCharacterAPI.Controllers.MoviesController.PostMovie(MovieCharacterAPI.DTO.MovieDTO.MovieCreateDTO)">
+            <summary>
+            Insert a new movie in database
+            </summary>
+            <param name="movieDTO">MovieCreateDTO</param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieCharacterAPI.Controllers.MoviesController.DeleteMovie(System.Int32)">
+            <summary>
+            Delete a movie from database specified by Id
+            </summary>
+            <param name="id">MovieId</param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieCharacterAPI.Controllers.MoviesController.MovieExists(System.Int32)">
+            <summary>
+            Check if movie exists specified by movie id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
         </member>
         <member name="T:MovieCharacterAPI.Data.DataSeedHelper">
             <summary>

@@ -6,7 +6,9 @@ namespace MovieCharacterAPI.DTO.MovieDTO
 {
     public class MovieCreateDTO
     {
+        [Required]
         public string Title { get; set; }
+        [Required]
         public int ReleaseYear { get; set; }
         public string? Genre { get; set; }
         public string? Director { get; set; }

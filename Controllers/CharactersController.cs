@@ -38,15 +38,14 @@ namespace MovieCharacterAPI.Controllers
         public async Task<ActionResult<IEnumerable<CharacterReadDTO>>> GetCharacter()
         {
             var characterList = await _context.Character.ToListAsync();
-            var characterDTO = _mapper.Map<List<CharacterReadDTO>>(characterList);
-            return characterDTO;
+            return _mapper.Map<List<CharacterReadDTO>>(characterList);
         }
 
         /// <summary>
         /// Get a character from database specified by id
         /// </summary>
         /// <param name="id">Character Id</param>
-        /// <returns>Character DTO</returns> 
+        /// <returns>CharacterReadDTO</returns> 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -102,7 +101,7 @@ namespace MovieCharacterAPI.Controllers
         }
 
         /// <summary>
-        /// Create a new character in database
+        /// Insert a new character in database
         /// </summary>
         /// <param name="characterDTO"> CharacterCreateDTO </param>
         /// <returns></returns>
@@ -141,7 +140,7 @@ namespace MovieCharacterAPI.Controllers
         }
 
         /// <summary>
-        /// Check by Id if a specific character exists
+        /// Check If a character exists by character Id
         /// </summary>
         /// <param name="id"> Id of character</param>
         /// <returns> boolean</returns>
