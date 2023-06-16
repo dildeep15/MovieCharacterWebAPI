@@ -64,7 +64,7 @@ namespace MovieCharacterAPI.Controllers
         }
 
         /// <summary>
-        /// Update a character in database
+        /// Update a character in database specified by Id
         /// </summary>
         /// <param name="id"> Id of character to be updated</param>
         /// <param name="characterDTO"> Character DTO</param>
@@ -104,7 +104,7 @@ namespace MovieCharacterAPI.Controllers
         /// <summary>
         /// Create a new character in database
         /// </summary>
-        /// <param name="characterDTO"> Character DTO </param>
+        /// <param name="characterDTO"> CharacterCreateDTO </param>
         /// <returns></returns>
         [ProducesResponseType(StatusCodes.Status201Created)]
         [HttpPost]

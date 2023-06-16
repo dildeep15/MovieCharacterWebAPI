@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MovieCharacterAPI</name>
+    </assembly>
+    <members>
+        <member name="M:MovieCharacterAPI.Controllers.CharactersController.GetCharacter">
+            <summary>
+            Get all characters from database
+            </summary>
+            <returns>List of CharacterReadDTO</returns>
+        </member>
+        <member name="M:MovieCharacterAPI.Controllers.CharactersController.GetCharacter(System.Int32)">
+            <summary>
+            Get a character from database specified by id
+            </summary>
+            <param name="id">Character Id</param>
+            <returns>Character DTO</returns> 
+        </member>
+        <member name="M:MovieCharacterAPI.Controllers.CharactersController.PutCharacter(System.Int32,MovieCharacterAPI.DTO.CharacterDTO.CharacterUpdateDTO)">
+            <summary>
+            Update a character in database
+            </summary>
+            <param name="id"> Id of character to be updated</param>
+            <param name="characterDTO"> Character DTO</param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieCharacterAPI.Controllers.CharactersController.PostCharacter(MovieCharacterAPI.DTO.CharacterDTO.CharacterCreateDTO)">
+            <summary>
+            Create a new character in database
+            </summary>
+            <param name="characterDTO"> CharacterCreateDTO </param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieCharacterAPI.Controllers.CharactersController.DeleteCharacter(System.Int32)">
+            <summary>
+            Delete a character from database specified by Id
+            </summary>
+            <param name="id">Character ID</param>
+            <returns></returns>
+            
+        </member>
+        <member name="M:MovieCharacterAPI.Controllers.CharactersController.CharacterExists(System.Int32)">
+            <summary>
+            Check by Id if a specific character exists
+            </summary>
+            <param name="id"> Id of character</param>
+            <returns> boolean</returns>
+        </member>
+        <member name="T:MovieCharacterAPI.Data.DataSeedHelper">
+            <summary>
+            Class to help seed data in database
+            </summary>
+        </member>
+        <member name="M:MovieCharacterAPI.Data.DataSeedHelper.SeedCharacters">
+            <summary>
+            <c>SeedCharacters</c> return demo seeding data for character
+            </summary>
+            <returns>List of Character</returns>
+        </member>
+        <member name="M:MovieCharacterAPI.Data.DataSeedHelper.SeedFranchises">
+            <summary>
+            <c>SeedFranchises</c> return demo seeding data for Franchise
+            </summary>
+            <returns>List of Franchise</returns>
+        </member>
+        <member name="M:MovieCharacterAPI.Data.DataSeedHelper.SeedMovies">
+            <summary>
+            <c>SeedMovies</c> return demo seeding data for Movie
+            </summary>
+            <returns>List of Movie</returns>
+        </member>
+    </members>
+</doc>

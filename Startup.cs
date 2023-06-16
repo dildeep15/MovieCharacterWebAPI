@@ -11,7 +11,9 @@ using Microsoft.OpenApi.Models;
 using MovieCharacterAPI.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace MovieCharacterAPI
@@ -34,9 +36,31 @@ namespace MovieCharacterAPI
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "MovieCharacterAPI", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo 
+                { 
+                    Title = "MovieCharacterAPI", 
+                    Version = "v1",
+                    Description = "Movie Character Web API using ASP.NET Core",
+                    TermsOfService = new Uri("https://example.com/terms"),
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Dildeep Singh",
+                        Email = string.Empty,
+                        Url = new Uri("https://example.com/terms"),
+                    },
+                    License = new OpenApiLicense
+                    {
+                        Name = "Use under MIT",
+                        Url = new Uri("https://example.com/license"),
+                    }
+                });
+
+                // Set the comments path for the Swagger JSON and UI.
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
             });
-            
+
             // Add automapper service
             services.AddAutoMapper(typeof(Startup));
         }

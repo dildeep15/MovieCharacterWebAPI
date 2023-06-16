@@ -143,3 +143,5 @@ D:\.Net Projects\MovieCharacterAPI\MovieCharacterAPI\bin\Debug\net5.0\Microsoft.
 D:\.Net Projects\MovieCharacterAPI\MovieCharacterAPI\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
 D:\.Net Projects\MovieCharacterAPI\MovieCharacterAPI\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
 D:\.Net Projects\MovieCharacterAPI\MovieCharacterAPI\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
+D:\.Net Projects\MovieCharacterAPI\MovieCharacterAPI\bin\Debug\net5.0\MovieCharacterAPI.xml
+D:\.Net Projects\MovieCharacterAPI\MovieCharacterAPI\obj\Debug\net5.0\MovieCharacterAPI.xml
