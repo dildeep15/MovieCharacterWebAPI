@@ -19,7 +19,7 @@
         </member>
         <member name="M:MovieCharacterAPI.Controllers.CharactersController.PutCharacter(System.Int32,MovieCharacterAPI.DTO.CharacterDTO.CharacterUpdateDTO)">
             <summary>
-            Update a character in database
+            Update a character in database specified by Id
             </summary>
             <param name="id"> Id of character to be updated</param>
             <param name="characterDTO"> Character DTO</param>
