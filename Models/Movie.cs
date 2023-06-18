@@ -17,6 +17,8 @@ namespace MovieCharacterAPI.Models
         public string? Director { get; set; }
         public string? PictureURL { get; set; }
         public string? TrailerURL { get; set; }
+
+        //Foreign Key
         public int? FranchiseId { get; set; }
 
         // Navigation property

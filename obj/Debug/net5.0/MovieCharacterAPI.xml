@@ -47,6 +47,56 @@
             <param name="id"> Id of character</param>
             <returns> boolean</returns>
         </member>
+        <member name="M:MovieCharacterAPI.Controllers.FranchisesController.GetFranchise">
+            <summary>
+            Get all franchise from database
+            </summary>
+            <returns>List of FranchiseReadDTO</returns>
+        </member>
+        <member name="M:MovieCharacterAPI.Controllers.FranchisesController.GetFranchise(System.Int32)">
+            <summary>
+            Get a franchise from database specified by id
+            </summary>
+            <param name="id">Franchise Id</param>
+            <returns>FranchiseReadDTO</returns> 
+        </member>
+        <member name="M:MovieCharacterAPI.Controllers.FranchisesController.PutFranchise(System.Int32,MovieCharacterAPI.DTO.FranchiseDTO.FranchiseUpdateDTO)">
+            <summary>
+            Update franchise by specific franchise id
+            </summary>
+            <param name="id">FranchiseId</param>
+            <param name="franchiseDTO">FranchiseUpdateDTO</param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieCharacterAPI.Controllers.FranchisesController.PostFranchise(MovieCharacterAPI.DTO.FranchiseDTO.FranchiseCreateDTO)">
+            <summary>
+            Insert a new franchise in database
+            </summary>
+            <param name="franchiseDTO">FranchiseCreateDTO</param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieCharacterAPI.Controllers.FranchisesController.DeleteFranchise(System.Int32)">
+            <summary>
+            Delete a franchise from database specified by id
+            </summary>
+            <param name="id">FranchiseId</param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieCharacterAPI.Controllers.FranchisesController.UpdateMoviesInFranchise(System.Int32,System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Update list of movies in a franchise specified by id
+            </summary>
+            <param name="id">FranchiseId</param>
+            <param name="movies">List of moviesid</param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieCharacterAPI.Controllers.FranchisesController.FranchiseExists(System.Int32)">
+            <summary>
+            Check if a franchise exists in database specified by id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="M:MovieCharacterAPI.Controllers.MoviesController.GetMovie">
             <summary>
             Get all movies from database
