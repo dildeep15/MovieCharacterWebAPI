@@ -6,7 +6,9 @@ using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using MovieCharacterAPI.DTO.CharacterDTO;
 using MovieCharacterAPI.DTO.FranchiseDTO;
+using MovieCharacterAPI.DTO.MovieDTO;
 using MovieCharacterAPI.Models;
 
 namespace MovieCharacterAPI.Controllers
@@ -61,6 +63,55 @@ namespace MovieCharacterAPI.Controllers
             return _mapper.Map<FranchiseReadDTO>(franchise);
         }
 
+
+        /// <summary>
+        /// Get list of movies in a franchise specified by id
+        /// </summary>
+        /// <param name="id">Franchise Id</param>
+        /// <returns> List of MovieReadDTO</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [HttpGet("{id}/movies")]
+        public async Task<ActionResult<IEnumerable<MovieReadDTO>>> GetAllMoviesInFranchise(int id)
+        {
+            Franchise franchise = await _context.Franchise.Include(f => f.Movie).Where(f => f.FranchiseId == id).FirstOrDefaultAsync();
+            if (franchise == null)
+            {
+                return NotFound("No Movie found in franchise");
+            }
+
+            foreach (Movie movie in franchise.Movie)
+            {
+                movie.Franchise = null;
+            }
+
+            return _mapper.Map<List<MovieReadDTO>>(franchise.Movie);
+        }
+
+
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [HttpGet("{id}/character")]
+        public async Task<ActionResult<IEnumerable<CharacterReadDTO>>> GetAllCharactersInFranchise(int id)
+        {
+            /*
+             * select CM.CharactersCharacterId from CharacterMovie as CM
+join Movie m on cm.MoviesMovieId = m.MovieId
+Where m.FranchiseId=2;
+             */
+            // await _context.Character.Where(character => character.Movies.Any(movie => movie.FranchiseId == id)).Include(c => c.Movies).ToListAsync();
+            var Characters = await _context.Character.Where(character => character.Movies.Any(movie => movie.FranchiseId == id)).Include(c => c.Movies).ToListAsync();
+            //Franchise franchise = await _context.Franchise.Include(f => f.Movie).Where(f => f.FranchiseId == id).FirstOrDefaultAsync();
+            if (Characters == null)
+            {
+                return NotFound("No Character found in franchise");
+            }
+
+            List<Character> movieList = new List<Character>();
+            return _mapper.Map<List<CharacterReadDTO>>(Characters);
+        }
+
+
         /// <summary>
         /// Update franchise by specific franchise id
         /// </summary>
@@ -95,6 +146,38 @@ namespace MovieCharacterAPI.Controllers
                     throw;
                 }
             }
+
+            return NoContent();
+        }
+
+        /// <summary>
+        /// Update list of movies in a franchise specified by id
+        /// </summary>
+        /// <param name="id">FranchiseId</param>
+        /// <param name="movies">List of movies id</param>
+        /// <returns></returns>
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [HttpPut("{id}/movies")]
+        public async Task<IActionResult> UpdateMoviesInFranchise(int id, List<int> movies)
+        {
+            Franchise franchise = await _context.Franchise.Include(f => f.Movie).FirstOrDefaultAsync(f => f.FranchiseId == id);
+            if (franchise == null)
+            {
+                return NotFound();
+            }
+
+            // clear existing movies from given franchise
+            franchise.Movie.Clear();
+
+            foreach (int movieId in movies)
+            {
+                Movie mov = await _context.Movie.FindAsync(movieId);
+                franchise.Movie.Add(mov);
+            }
+
+            await _context.SaveChangesAsync();
 
             return NoContent();
         }
@@ -135,37 +218,7 @@ namespace MovieCharacterAPI.Controllers
             return NoContent();
         }
 
-        /// <summary>
-        /// Update list of movies in a franchise specified by id
-        /// </summary>
-        /// <param name="id">FranchiseId</param>
-        /// <param name="movies">List of movies id</param>
-        /// <returns></returns>
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [HttpPut("{id}/movies")]
-        public async Task<IActionResult> UpdateMoviesInFranchise(int id, List<int> movies)
-        {
-            Franchise franchise = await _context.Franchise.Include(c => c.Movie).FirstOrDefaultAsync(c => c.FranchiseId == id);
-            if (franchise == null)
-            {
-                return NotFound();
-            }
 
-            // clear existing movies from given franchise
-            franchise.Movie.Clear();
-
-            foreach (int movieId in movies)
-            {
-                Movie mov = await _context.Movie.FindAsync(movieId);
-                franchise.Movie.Add(mov);
-            }
-
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
 
 
         /// <summary>

@@ -60,12 +60,27 @@
             <param name="id">Franchise Id</param>
             <returns>FranchiseReadDTO</returns> 
         </member>
+        <member name="M:MovieCharacterAPI.Controllers.FranchisesController.GetAllMoviesInFranchise(System.Int32)">
+            <summary>
+            Get list of movies in a franchise specified by id
+            </summary>
+            <param name="id">Franchise Id</param>
+            <returns> List of MovieReadDTO</returns>
+        </member>
         <member name="M:MovieCharacterAPI.Controllers.FranchisesController.PutFranchise(System.Int32,MovieCharacterAPI.DTO.FranchiseDTO.FranchiseUpdateDTO)">
             <summary>
             Update franchise by specific franchise id
             </summary>
             <param name="id">FranchiseId</param>
             <param name="franchiseDTO">FranchiseUpdateDTO</param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieCharacterAPI.Controllers.FranchisesController.UpdateMoviesInFranchise(System.Int32,System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Update list of movies in a franchise specified by id
+            </summary>
+            <param name="id">FranchiseId</param>
+            <param name="movies">List of movies id</param>
             <returns></returns>
         </member>
         <member name="M:MovieCharacterAPI.Controllers.FranchisesController.PostFranchise(MovieCharacterAPI.DTO.FranchiseDTO.FranchiseCreateDTO)">
@@ -80,14 +95,6 @@
             Delete a franchise from database specified by id
             </summary>
             <param name="id">FranchiseId</param>
-            <returns></returns>
-        </member>
-        <member name="M:MovieCharacterAPI.Controllers.FranchisesController.UpdateMoviesInFranchise(System.Int32,System.Collections.Generic.List{System.Int32})">
-            <summary>
-            Update list of movies in a franchise specified by id
-            </summary>
-            <param name="id">FranchiseId</param>
-            <param name="movies">List of moviesid</param>
             <returns></returns>
         </member>
         <member name="M:MovieCharacterAPI.Controllers.FranchisesController.FranchiseExists(System.Int32)">
@@ -130,6 +137,14 @@
             Delete a movie from database specified by Id
             </summary>
             <param name="id">MovieId</param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieCharacterAPI.Controllers.MoviesController.UpdateCharactersInMovie(System.Int32,System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Update list of characters in a movie specified by id
+            </summary>
+            <param name="id">movie id</param>
+            <param name="characters"> List of character id</param>
             <returns></returns>
         </member>
         <member name="M:MovieCharacterAPI.Controllers.MoviesController.MovieExists(System.Int32)">

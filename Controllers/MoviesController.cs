@@ -138,6 +138,40 @@ namespace MovieCharacterAPI.Controllers
         }
 
         /// <summary>
+        /// Update list of characters in a movie specified by id
+        /// </summary>
+        /// <param name="id">movie id</param>
+        /// <param name="characters"> List of character id</param>
+        /// <returns></returns>
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [HttpPut("{id}/characters")]
+        public async Task<IActionResult> UpdateCharactersInMovie(int id, List<int> characters)
+        {
+            // get movie object including its character
+            Movie movie = await _context.Movie.Include(m => m.Characters).FirstOrDefaultAsync(f => f.MovieId == id);
+            if (movie == null)
+            {
+                return NotFound("Movie not found");
+            }
+
+            //Clear existing characters in movie
+            movie.Characters.Clear();
+
+            foreach(int charId in characters)
+            { 
+                Character character = await _context.Character.FindAsync(charId);
+                movie.Characters.Add(character);
+            }
+
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+
+        }
+
+        /// <summary>
         /// Check if movie exists specified by movie id
         /// </summary>
         /// <param name="id"></param>
