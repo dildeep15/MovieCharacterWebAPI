@@ -67,6 +67,13 @@
             <param name="id">Franchise Id</param>
             <returns> List of MovieReadDTO</returns>
         </member>
+        <member name="M:MovieCharacterAPI.Controllers.FranchisesController.GetAllCharactersInFranchise(System.Int32)">
+            <summary>
+            Get list of characters in a franchise specified by Id
+            </summary>
+            <param name="id">Franchise Id</param>
+            <returns> List of characters</returns>
+        </member>
         <member name="M:MovieCharacterAPI.Controllers.FranchisesController.PutFranchise(System.Int32,MovieCharacterAPI.DTO.FranchiseDTO.FranchiseUpdateDTO)">
             <summary>
             Update franchise by specific franchise id
@@ -146,6 +153,13 @@
             <param name="id">movie id</param>
             <param name="characters"> List of character id</param>
             <returns></returns>
+        </member>
+        <member name="M:MovieCharacterAPI.Controllers.MoviesController.GetAllCharactersInMovie(System.Int32)">
+            <summary>
+            Get all characters in a movie specified by id
+            </summary>
+            <param name="id">Movie id</param>
+            <returns>List of characters</returns>
         </member>
         <member name="M:MovieCharacterAPI.Controllers.MoviesController.MovieExists(System.Int32)">
             <summary>

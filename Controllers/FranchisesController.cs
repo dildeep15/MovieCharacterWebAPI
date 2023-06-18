@@ -88,26 +88,23 @@ namespace MovieCharacterAPI.Controllers
             return _mapper.Map<List<MovieReadDTO>>(franchise.Movie);
         }
 
-
+        /// <summary>
+        /// Get list of characters in a franchise specified by Id
+        /// </summary>
+        /// <param name="id">Franchise Id</param>
+        /// <returns> List of characters</returns>
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet("{id}/character")]
         public async Task<ActionResult<IEnumerable<CharacterReadDTO>>> GetAllCharactersInFranchise(int id)
         {
-            /*
-             * select CM.CharactersCharacterId from CharacterMovie as CM
-join Movie m on cm.MoviesMovieId = m.MovieId
-Where m.FranchiseId=2;
-             */
-            // await _context.Character.Where(character => character.Movies.Any(movie => movie.FranchiseId == id)).Include(c => c.Movies).ToListAsync();
+
             var Characters = await _context.Character.Where(character => character.Movies.Any(movie => movie.FranchiseId == id)).Include(c => c.Movies).ToListAsync();
-            //Franchise franchise = await _context.Franchise.Include(f => f.Movie).Where(f => f.FranchiseId == id).FirstOrDefaultAsync();
-            if (Characters == null)
+            if (Characters.Count() == 0)
             {
                 return NotFound("No Character found in franchise");
             }
 
-            List<Character> movieList = new List<Character>();
             return _mapper.Map<List<CharacterReadDTO>>(Characters);
         }
 

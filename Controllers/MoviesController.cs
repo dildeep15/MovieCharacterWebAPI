@@ -6,6 +6,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using MovieCharacterAPI.DTO.CharacterDTO;
 using MovieCharacterAPI.DTO.MovieDTO;
 using MovieCharacterAPI.Models;
 
@@ -169,6 +170,27 @@ namespace MovieCharacterAPI.Controllers
 
             return NoContent();
 
+        }
+
+
+        /// <summary>
+        /// Get all characters in a movie specified by id
+        /// </summary>
+        /// <param name="id">Movie id</param>
+        /// <returns>List of characters</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [HttpGet("{id}/Characters")]
+        public async Task<ActionResult<IEnumerable<CharacterReadDTO>>> GetAllCharactersInMovie(int id)
+        {
+            //await _context.Character.Where(character => character.Movies.Any(movie => movie.MovieId == id)).ToListAsync();
+            var characterList =  await _context.Character.Where(character => character.Movies.Any(movie => movie.MovieId == id)).ToListAsync();
+            if (characterList.Count() == 0)
+            {
+                return NotFound("No character found in specific movie");
+            }
+            return _mapper.Map<List<CharacterReadDTO>>(characterList);
         }
 
         /// <summary>
