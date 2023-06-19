@@ -17,6 +17,7 @@ namespace MovieCharacterAPI.Models
         public string? Alias { get; set; }
         [MaxLength(255)]
         public string? PictureURL { get; set; }
+
         // Navigation property
         public ICollection<Movie> Movies { get; set; }
     }

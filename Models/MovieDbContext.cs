@@ -14,13 +14,13 @@ namespace MovieCharacterAPI.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Seeding Character
+            // Seeding Character Data
             modelBuilder.Entity<Character>().HasData(DataSeedHelper.SeedCharacters());
 
-            // Seeding Franchise
+            // Seeding Franchise Data
             modelBuilder.Entity<Franchise>().HasData(DataSeedHelper.SeedFranchises());
 
-            // Seeding Movie
+            // Seeding Movie Data
             modelBuilder.Entity<Movie>().HasData( DataSeedHelper.SeedMovies());
 
             modelBuilder.Entity<Character>()
