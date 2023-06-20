@@ -38,7 +38,6 @@
             </summary>
             <param name="id">Character ID</param>
             <returns></returns>
-            
         </member>
         <member name="M:MovieCharacterAPI.Controllers.CharactersController.CharacterExists(System.Int32)">
             <summary>

@@ -121,7 +121,6 @@ namespace MovieCharacterAPI.Controllers
         /// </summary>
         /// <param name="id">Character ID</param>
         /// <returns></returns>
-        /// 
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpDelete("{id}")]
