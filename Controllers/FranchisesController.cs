@@ -39,6 +39,7 @@ namespace MovieCharacterAPI.Controllers
         public async Task<ActionResult<IEnumerable<FranchiseReadDTO>>> GetFranchise()
         {
             var franchiseList = await _context.Franchise.ToListAsync();
+            
             return _mapper.Map<List<FranchiseReadDTO>>(franchiseList);
         }
 
