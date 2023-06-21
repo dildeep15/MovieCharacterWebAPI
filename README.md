@@ -3,6 +3,8 @@ This is an ASP.NET Core web API that uses Entity Framework with code first appro
 These three models have following relationship :
 - Many to Many relationship between Characters & Movies.
 - One to Many realtionship between Franchise & Movies.
+  ![DatabaseDiagram](https://github.com/dildeep15/MovieCharacterWebAPI/assets/29199655/06556fd9-4e88-42b6-9993-0e464c957d54)
+
 
 ## User can do following operations:
 - Basic CRUD for:
